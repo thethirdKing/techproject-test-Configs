@@ -1,12 +1,15 @@
-# Clear any existing DHCP bindings and conflicts
-clear ip dhcp binding *
-clear ip dhcp conflict *
-
-# Configure a static IP temporarily
 interface GigabitEthernet0/3
- no ip address dhcp
- ip address 192.168.255.2 255.255.255.0
- no shutdown
+no ip address 192.168.255.2 255.255.255.0
+ip address dhcp
+no shutdown
+exit
+clear ip dhcp binding *
+debug dhcp detail
 
-# Test connectivity to the DHCP server or default gateway
-ping 192.168.255.1
+
+
+interface GigabitEthernet0/3
+ip dhcp client request options all
+exit
+clear ip dhcp binding *
+debug dhcp detail
