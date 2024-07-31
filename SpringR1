@@ -115,6 +115,14 @@ banner login ^C
 * purposes is expressly prohibited except as otherwise authorized by     *
 * Cisco in writing.                                                      *
 **************************************************************************^C
+interface GigabitEthernet0/0
+no shutdown
+interface GigabitEthernet0/1
+no shutdown
+interface GigabitEthernet0/2
+no shutdown
+interface GigabitEthernet0/3
+no shutdown
 line con 0
  exec-timeout 0 0
  password cisco
