@@ -1,15 +1,282 @@
-interface GigabitEthernet0/3
-no ip address 192.168.255.2 255.255.255.0
-ip address dhcp
-no shutdown
-exit
-clear ip dhcp binding *
-debug dhcp detail
+S-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
 
+Gateway of last resort is 192.168.255.1 to network 0.0.0.0
 
+S*    0.0.0.0/0 [1/0] via 192.168.255.1
+      10.0.0.0/8 is variably subnetted, 10 subnets, 3 masks
+O        10.150.0.0/24 [110/2] via 10.150.127.10, 00:20:21, GigabitEthernet0/1
+C        10.150.127.0/30 is directly connected, GigabitEthernet0/2
+L        10.150.127.1/32 is directly connected, GigabitEthernet0/2
+C        10.150.127.4/30 is directly connected, GigabitEthernet0/0
+L        10.150.127.5/32 is directly connected, GigabitEthernet0/0
+C        10.150.127.8/30 is directly connected, GigabitEthernet0/1
+L        10.150.127.9/32 is directly connected, GigabitEthernet0/1
+O        10.150.127.12/30 
+ --More-- 
+*Jul 31 23:38:41.402:    Hostname: SpringR1
+*Jul 31 23:38:41.402: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:38:41.403: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:38:41.403: DHCP: SDiscover 307 bytes 
+*Jul 31 23:38:41.404:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+           [110/2] via 10.150.127.2, 00:20:21, GigabitEthernet0/2
+O        10.150.127.16/30 
+           [110/2] via 10.150.127.10, 00:20:21, GigabitEthernet0/1
+           [110/2] via 10.150.127.2, 00:20:21, GigabitEthernet0/2
+O        10.150.127.20/30 
+           [110/2] via 10.150.127.10, 00:20:21, GigabitEthernet0/1
+O     192.168.255.0/24 [110/2] via 10.150.127.2, 00:00:28, GigabitEthernet0/2
+SpringR1#
+*Jul 31 23:38:45.445: DHCP: QScan: Timed out Selecting state
+SpringR1#%Unknown DHCP problem.. No allocation possible
+*Jul 31 23:38:54.092: DHCP: Waiting for 10 seconds on interface GigabitEthernet0/3
+SpringR1#
+SpringR1#
+SpringR1#ping 8.8.8.8
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+.
+*Jul 31 23:39:04.092: DHCP: Try 3 to acquire address for GigabitEthernet0/3
+*Jul 31 23:39:04.112: DHCP: allocate request
+*Jul 31 23:39:04.112: DHCP: zapping entry in DHC_PURGING state for Gi0/3
+*Jul 31 23:39:04.112: DHCP: deleting entry 11E4AE78 0.0.0.0 from list
+*Jul 31 23:39:04.112: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:04.112: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:04.113:    DHCP Lease server: 0.0.0.0, state: 11 Purging
+*Jul 31 23:39:04.113:    DHCP transaction id: 21F
+*Jul 31 23:39:04.113:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:04.113:    Next timer fires after: 00:00:21
+*Jul 31 23:39:04.113:    Retry count: 0   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:04.113:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:04.116:                        326232362D4769302F33
+*Jul 31 23:39:04.117:    Hostname: SpringR1
+*Jul 31 23:39:04.117: DHCP: new entry. add to queue, interface GigabitEthernet0/3
+*Jul 31 23:39:04.117: DHCP: SDiscover attempt # 1 for entry:
+*Jul 31 23:39:04.117: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:04.117: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:04.118:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:04.118:    DHCP transaction id: 220
+*Jul 31 23:39:04.118:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:04.118:    Next timer fires after: 00:00:04
+*Jul 31 23:39:04.118:    Retry count: 1   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:04.118:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:04.120:                        326232362D4769302F33
+*Jul 31 23:39:04.122:    Hostname: SpringR1
+*Jul 31 23:39:04.122: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:04.123: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:04.123: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:04.124:             B'cast .on GigabitEthernet0/3 interface from 0.0.0.0
+*Jul 31 23:39:04.127: %OSPF-4-NO_IPADDRESS_ON_INT: No IP address for interface GigabitEthernet0/3.
+*Jul 31 23:39:07.559: DHCP: SDiscover attempt # 2 for entry:
+*Jul 31 23:39:07.559: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:07.559: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:07.559:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:07.560:    DHCP transaction id: 220
+*Jul 31 23:39:07.560:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:07.560:    Next timer fires after: 00:00:04
+*Jul 31 23:39:07.560:    Retry count: 2   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:07.560:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:07.562:                        326232362D4769302F33.
+*Jul 31 23:39:07.564:    Hostname: SpringR1
+*Jul 31 23:39:07.564: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:07.565: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:07.565: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:07.566:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0.
+Success rate is 0 percent (0/5)
+SpringR1#
+*Jul 31 23:39:11.608: DHCP: SDiscover attempt # 3 for entry:
+*Jul 31 23:39:11.608: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:11.608: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:11.608:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:11.609:    DHCP transaction id: 220
+*Jul 31 23:39:11.609:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:11.609:    Next timer fires after: 00:00:04
+*Jul 31 23:39:11.609:    Retry count: 3   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:11.609:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:11.611:                        326232362D4769302F33
+SpringR1#
+*Jul 31 23:39:11.613:    Hostname: SpringR1
+*Jul 31 23:39:11.613: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:11.614: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:11.614: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:11.615:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+SpringR1#co
+*Jul 31 23:39:15.658: DHCP: QScan: Timed out Selecting state
+SpringR1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SpringR1(config)#interface GigabitEthernet0/3
+SpringR1(config-if)#no ip address 192.168.255.2 255.255.255.0
+Use 'no ip addr dhcp' to remove the DHCP address
+SpringR1(config-if)#ip address dhcp
+SpringR1(config-if)#no shutdown
+SpringR1(config-if)#exit
+*Jul 31 23:39:21.350: DHCP: Release IPL called for interface GigabitEthernet0/3 in state 11
+*Jul 31 23:39:21.350: RAC: DHCP stopped on interface GigabitEthernet0/3
+*Jul 31 23:39:21.351: DHCP: DHCP client process started: 10
+*Jul 31 23:39:21.355: RAC: Starting DHCP discover on GigabitEthernet0/3
+*Jul 31 23:39:21.355: DHCP: Try 1 to acquire address for GigabitEthernet0/3
+*Jul 31 23:39:21.367: DHCP: allocate request
+*Jul 31 23:39:21.367: DHCP: zapping entry in DHC_PURGING state for Gi0/3
+*Jul 31 23:39:21.367: DHCP: deleting entry 120E7D08 0.0.0.0 from list
+*Jul 31 23:39:21.367: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:21.367: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:21.367:    DHCP Lease server: 0.0.0.0, state: 11 Purging
+*Jul 31 23:39:21.368:    DHCP transaction id: 220
+*Jul 31 23:39:21.368:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:21.368:    Next timer fires after: 00:00:26
+*Jul 31 23:39:21.368:    Retry count: 0   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:21.368:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:21.370:                        326232362D4769302F33
+*Jul 31 23:39:21.372:    Hostname: SpringR1
+*Jul 31 23:39:21.372: DHCP: new entry. add to queue, interface GigabitEthernet0/3
+*Jul 31 23:39:21.372: DHCP: SDiscover attempt # 1 for entry:
+*Jul 31 23:39:21.372: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:21.372: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:21.372:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:21.372:    DHCP transaction id: FD2
+*Jul 31 23:39:21.373:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:21.373:    Next timer fires after: 00:00:04
+*Jul 31 23:39:21.373:    Retry count: 1   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:21.373:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:21.375:                        326232362D4769
+SpringR1(confi302F33
+*Jul 31 23:39:21.376:    Hostname: SpringR1
+*Jul 31 23:39:21.376: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:21.376: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:21.377: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:21.378:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+*Jul 31 23:39:21.380: %OSPF-4-NO_IPADDRESS_ON_INT: No IP address for interface GigabitEthernet0/3g-if)#exit
+SpringR1(config-if)#exit
+*Jul 31 23:39:24.774: DHCP: SDiscover attempt # 2 for entry:
+*Jul 31 23:39:24.775: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:24.775: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:24.775:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:24.775:    DHCP transaction id: FD2
+*Jul 31 23:39:24.775:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:24.775:    Next timer fires after: 00:00:04
+*Jul 31 23:39:24.776:    Retry count: 2   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:24.776:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:24.778:                        326232362D4769302F33
+SpringR1(config-if)#exit
+*Jul 31 23:39:24.779:    Hostname: SpringR1
+*Jul 31 23:39:24.779: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:24.780: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:24.781: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:24.781:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+SpringR1(config-if)#exit
+*Jul 31 23:39:28.825: DHCP: SDiscover attempt # 3 for entry:
+*Jul 31 23:39:28.825: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:28.826: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:28.826:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:28.826:    DHCP transaction id: FD2
+*Jul 31 23:39:28.826:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:28.826:    Next timer fires after: 00:00:04
+*Jul 31 23:39:28.826:    Retry count: 3   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:28.826:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:28.828:                        326232362D4769302F33
+SpringR1(config-if)#exit
+*Jul 31 23:39:28.830:    Hostname: SpringR1
+*Jul 31 23:39:28.830: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:28.831: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:28.831: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:28.832:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+SpringR1(config-if)#exit
+*Jul 31 23:39:32.875: DHCP: QScan: Timed out Selecting state
+SpringR1(config-if)#exit
+SpringR1(config)#cls
+                   ^
+% Invalid input detected at '^' marker.
 
-interface GigabitEthernet0/3
-ip dhcp client request options all
-exit
-clear ip dhcp binding *
-debug dhcp detail
+SpringR1(config)#%Unknown DHCP problem.. No allocation possible
+*Jul 31 23:39:41.505: DHCP: Waiting for 5 seconds on interface GigabitEthernet0/3
+SpringR1(config)#
+*Jul 31 23:39:46.505: DHCP: Try 2 to acquire address for GigabitEthernet0/3
+*Jul 31 23:39:46.525: DHCP: allocate request
+*Jul 31 23:39:46.525: DHCP: zapping entry in DHC_PURGING state for Gi0/3
+*Jul 31 23:39:46.525: DHCP: deleting entry 120E7D08 0.0.0.0 from list
+*Jul 31 23:39:46.525: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:46.525: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:46.525:    DHCP Lease server: 0.0.0.0, state: 11 Purging
+*Jul 31 23:39:46.526:    DHCP transaction id: FD2
+*Jul 31 23:39:46.526:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:46.526:    Next timer fires after: 00:00:26
+*Jul 31 23:39:46.526:    Retry count: 0   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:46.526:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:46.528:                        326232362D4769302F33
+*Jul 31 23:39:46.530:    Hostname: SpringR1
+*Jul 31 23:39:46.530: DHCP: new entry. add to queue, interface GigabitEthernet0/3
+*Jul 31 23:39:46.530: DHCP: SDiscover attempt # 1 for entry:
+*Jul 31 23:39:46.530: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:46.530: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:46.530:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:46.530:    DHCP transaction id: FD3
+*Jul 31 23:39:46.530:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:46.530:    Next timer fires after: 00:00:04
+*Jul 31 23:39:46.530:    Retry count: 1   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:46.530:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:46.532:                        326232362D4769302F33
+*Jul 31 23:39:46.533:    Hostname: SpringR1
+*Jul 31 23:39:46.533: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:46.535: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:46.535: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:46.536:             B'cast 
+SpringR1(confion GigabitEthernet0/3 interface from 0.0.0.0
+*Jul 31 23:39:46.539: %OSPF-4-NO_IPADDRESS_ON_INT: No IP address for interface GigabitEthernet0/3g)#
+SpringR1(config)#
+*Jul 31 23:39:50.001: DHCP: SDiscover attempt # 2 for entry:
+*Jul 31 23:39:50.002: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:50.002: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:50.002:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:50.002:    DHCP transaction id: FD3
+*Jul 31 23:39:50.002:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:50.002:    Next timer fires after: 00:00:04
+*Jul 31 23:39:50.002:    Retry count: 2   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:50.003:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:50.005:                        326232362D4769302F33
+SpringR1(config)#
+*Jul 31 23:39:50.006:    Hostname: SpringR1
+*Jul 31 23:39:50.006: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:50.007: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:50.007: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:50.008:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+SpringR1(config)#no debug al
+*Jul 31 23:39:54.047: DHCP: SDiscover attempt # 3 for entry:
+*Jul 31 23:39:54.047: Temp IP addr: 0.0.0.0  for peer on Interface: GigabitEthernet0/3
+*Jul 31 23:39:54.047: Temp  sub net mask: 0.0.0.0
+*Jul 31 23:39:54.047:    DHCP Lease server: 0.0.0.0, state: 3 Selecting
+*Jul 31 23:39:54.047:    DHCP transaction id: FD3
+*Jul 31 23:39:54.047:    Lease: 0 secs,  Renewal: 0 secs,  Rebind: 0 secs
+*Jul 31 23:39:54.048:    Next timer fires after: 00:00:04
+*Jul 31 23:39:54.048:    Retry count: 3   Client-ID: cisco-5254.0014.2b26-Gi0/3
+*Jul 31 23:39:54.048:    Client-ID hex dump: 636973636F2D353235342E303031342E
+*Jul 31 23:39:54.050:                        326232362D4769302F33
+SpringR1(config)#no debug all
+                      ^
+% Invalid input detected at '^' marker.
+
+SpringR1(config)#
+*Jul 31 23:39:54.051:    Hostname: SpringR1
+*Jul 31 23:39:54.051: DHCP: SDiscover placed class-id option: 636973636F706E70
+*Jul 31 23:39:54.053: DHCP: SDiscover: sending 307 byte length DHCP packet
+*Jul 31 23:39:54.053: DHCP: SDiscover 307 bytes 
+*Jul 31 23:39:54.054:             B'cast on GigabitEthernet0/3 interface from 0.0.0.0
+SpringR1(config)#exit
+SpringR1#no 
+*Jul 31 23:39:58.093: DHCP: QScan: Timed out Selecting state
+SpringR1#no debb
+*Jul 31 23:39:59.513: %SYS-5-CONFIG_I: Configured from console by console
+SpringR1#no debug all
+All possible debugging has been turned off
+SpringR1#
+*Jul 31 23:40:16.748: %OSPF-4-NO_IPADDRESS_ON_INT: No IP address for interface GigabitEthernet0/3
+SpringR1#interface GigabitEthernet0/3
+          ^
+% Invalid input detected at '^' marker.
+
+SpringR1#ip dhcp client request options all
+             ^
+% Invalid input detected at '^' marker.
+
+SpringR1#exit
