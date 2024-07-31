@@ -166,6 +166,10 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
 !
+configure terminal
+interface Vlan990
+ no shutdown
+end
 interface Port-channel1
 no shutdown
 interface Port-channel2
