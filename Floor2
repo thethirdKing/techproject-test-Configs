@@ -89,6 +89,8 @@ interface GigabitEthernet2/3
  switchport nonegotiate
  shutdown
  negotiation auto
+interface Vlan200
+ ip address 10.150.44.32 255.255.255.0
 ip forward-protocol nd
 ip http server
 ip http secure-server
