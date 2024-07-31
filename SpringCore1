@@ -456,6 +456,52 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
 !
+configure terminal
+interface GigabitEthernet1/1
+ no shutdown
+interface GigabitEthernet1/2
+ no shutdown
+interface GigabitEthernet1/3
+ no shutdown
+interface Vlan105
+ no shutdown
+interface Vlan115
+ no shutdown
+interface Vlan125
+ no shutdown
+interface Vlan135
+ no shutdown
+interface Vlan145
+ no shutdown
+interface Vlan155
+ no shutdown
+interface Vlan200
+ no shutdown
+interface Vlan205
+ no shutdown
+interface Vlan210
+ no shutdown
+interface Vlan215
+ no shutdown
+interface Vlan220
+ no shutdown
+interface Vlan305
+ no shutdown
+interface Vlan310
+ no shutdown
+interface Vlan315
+ no shutdown
+interface Vlan320
+ no shutdown
+interface Vlan325
+ no shutdown
+interface Vlan720
+ no shutdown
+interface Vlan990
+ no shutdown
+interface Vlan999
+ no shutdown
+end
 line con 0
  exec-timeout 0 0
  password cisco
