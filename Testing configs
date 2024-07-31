@@ -1,0 +1,111 @@
+1. Verify EtherChannel Configuration:
+Devices: SpringCore1, SpringCore2, DataCenter
+# Verify EtherChannel Status
+show etherchannel summary
+show interfaces port-channel
+
+2. Verify VLAN Configuration:
+Devices: All Switches (SpringCore1, SpringCore2, Floor1, Floor2, Floor3, DataCenter)
+# Verify VLANs
+show vlan brief
+# Verify VTP Mode
+show vtp status
+
+
+3. Verify Spanning Tree Configuration:
+Devices: All Switches
+# Verify STP
+show spanning-tree
+
+4. Verify IPv4 Addressing and OSPF Configuration:
+Devices: SpringCore1, SpringCore2, SpringR1, SpringR2
+# Verify IP Address
+show ip interface brief
+# Verify OSPF Neighbors
+show ip ospf neighbor
+# Verify OSPF Routes
+show ip route ospf
+
+5. Verify HSRP Configuration:
+Devices: SpringCore1, SpringCore2
+
+# Verify HSRP Status
+show standby brief
+
+6. Verify IPv6 Addressing and OSPFv3 Configuration:
+Devices: SpringCore1, SpringCore2, SpringR1, SpringR2
+# Verify IPv6 Address
+show ipv6 interface brief
+# Verify OSPFv3 Neighbors
+show ipv6 ospf neighbor
+# Verify OSPFv3 Routes
+show ipv6 route ospf
+
+7. Verify NAT Configuration:
+Devices: SpringR1, SpringR2
+# Verify NAT Translations
+show ip nat translations
+# Verify NAT Statistics
+show ip nat statistics
+
+8. Verify Floating Static Routes:
+Devices: SpringCore1, SpringCore2
+# Verify Routing Table
+show ip route
+
+9. Verify DHCP Configuration on ISP Interfaces:
+Devices: SpringR1, SpringR2
+# Verify DHCP Assigned IP
+show ip interface brief
+
+10. Verify Port Security Configuration:
+Devices: Floor1, Floor2, Floor3
+# Verify Port Security
+show port-security
+show port-security interface <interface>
+
+11. Verify ACL Configuration:
+Devices: All Devices with ACLs
+# Verify ACLs
+show access-lists
+12. Verify SSH Configuration:
+Devices: All Devices
+# Verify SSH
+show ip ssh
+
+13. General Connectivity Tests:
+Devices: Any Device
+# Ping Tests for IPv4
+ping <IP Address>
+# Ping Tests for IPv6
+ping ipv6 <IPv6 Address>
+# Traceroute Tests for IPv4
+traceroute <IP Address>
+# Traceroute Tests for IPv6
+traceroute ipv6 <IPv6 Address>
+
+
+
+SpringCore1# show etherchannel summary
+SpringCore1# show interfaces port-channel
+SpringCore1# show vlan brief
+SpringCore1# show vtp status
+SpringCore1# show spanning-tree
+SpringCore1# show ip interface brief
+SpringCore1# show ip ospf neighbor
+SpringCore1# show ip route ospf
+SpringCore1# show standby brief
+SpringCore1# show ipv6 interface brief
+SpringCore1# show ipv6 ospf neighbor
+SpringCore1# show ipv6 route ospf
+SpringCore1# show ip nat translations
+SpringCore1# show ip nat statistics
+SpringCore1# show ip route
+SpringCore1# show port-security
+SpringCore1# show port-security interface <interface>
+SpringCore1# show access-lists
+SpringCore1# show ip ssh
+SpringCore1# ping <IP Address>
+SpringCore1# ping ipv6 <IPv6 Address>
+SpringCore1# traceroute <IP Address>
+SpringCore1# traceroute ipv6 <IPv6 Address>
