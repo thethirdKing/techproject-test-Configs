@@ -1,0 +1,169 @@
+SpringCore2(config)#router ospf 15
+SpringCore2(config-router)#no passive-interface GigabitEthernet1/2
+SpringCore2(config-router)#no passive-interface GigabitEthernet1/3
+SpringCore2(config-router)#end
+SpringCore2#
+*Jul 31 23:07:13.897: %SYS-5-CONFIG_I: Configured from console by console
+SpringCore2#show run | section ospf
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+router ospf 15
+ router-id 4.4.4.4
+ auto-cost reference-bandwidth 1000
+ passive-interface GigabitEthernet0/0
+ passive-interface GigabitEthernet0/1
+ passive-interface GigabitEthernet0/2
+ passive-interface GigabitEthernet0/3
+ passive-interface GigabitEthernet1/0
+ passive-interface Vlan105
+ passive-interface Vlan115
+ passive-interface Vlan125
+ passive-interface Vlan135
+ passive-interface Vlan145
+ passive-interface Vlan155
+ passive-interface Vlan200
+ passive-interface Vlan205
+ passive-interface Vlan215
+ passive-interface Vlan220
+ passive-interface Vlan305
+ passive-interface Vlan310
+ passive-interface Vlan315
+ passive-interface Vlan320
+ passive-interface Vlan325
+ passive-interface Vlan720
+ passive-interface Vlan990
+ passive-interface Vlan999
+ network 10.150.0.0 0.0.0.255 area 0
+ipv6 router ospf 15
+
+
+
+SpringCore1(config)#router ospf 15
+SpringCore1(config-router)#no passive-interface GigabitEthernet1/1
+SpringCore1(config-router)#no passive-interface GigabitEthernet1/2
+SpringCore1(config-router)#no passive-interface GigabitEthernet1/3
+SpringCore1(config-router)#end
+SpringCore1#
+*Aug  1 00:08:46.216: %SYS-5-CONFIG_I: Configured from console by console
+SpringCore1#show run | section ospf
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+ ip ospf network point-to-point
+ ipv6 ospf 15 area 0
+router ospf 15
+ router-id 3.3.3.3
+ auto-cost reference-bandwidth 1000
+ passive-interface GigabitEthernet0/0
+ passive-interface GigabitEthernet0/1
+ passive-interface GigabitEthernet0/2
+ passive-interface GigabitEthernet0/3
+ passive-interface GigabitEthernet1/0
+ passive-interface Vlan105
+ passive-interface Vlan115
+ passive-interface Vlan125
+ passive-interface Vlan135
+ passive-interface Vlan145
+ passive-interface Vlan155
+ passive-interface Vlan200
+ passive-interface Vlan205
+ passive-interface Vlan215
+ passive-interface Vlan220
+ passive-interface Vlan305
+ passive-interface Vlan310
+ passive-interface Vlan315
+ passive-interface Vlan320
+ passive-interface Vlan325
+ passive-interface Vlan720
+ passive-interface Vlan990
+ passive-interface Vlan999
+ network 10.150.0.0 0.0.0.255 area 0
+ipv6 router ospf 15
+SpringCore1#
