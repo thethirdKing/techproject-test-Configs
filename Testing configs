@@ -4,3 +4,12 @@ show etherchannel port-channel
 show interface Port-channel1
 show interface Port-channel2
 show interfaces status
+-------------------------------------------
+
+show running-config | include dhcp
+show running-config interface Vlan105
+show vlan brief
+show interfaces trunk
+show ip interface brief
+show ip dhcp binding
+ping 10.150.0.12
