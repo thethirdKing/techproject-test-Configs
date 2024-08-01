@@ -12,10 +12,7 @@ no ip routing
 no ip domain-lookup
 no ip cef
 no ipv6 cef
-archive
- path tftp://10.150.0.16/Floor1-Acc
- write-memory
- time-period 10080
+
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 vlan 105
