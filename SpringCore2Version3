@@ -375,7 +375,7 @@ interface Vlan990
 router ospf 15
  router-id 4.4.4.4
  auto-cost reference-bandwidth 1000
- network 10.150.0.0 0.0.0.255 area 0
+ !!network 10.150.0.0 0.0.0.255 area 0
  network 10.150.127.0 0.0.0.255 area 0
 !
 ip forward-protocol nd
