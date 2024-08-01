@@ -80,7 +80,7 @@ router ospf 15
  router-id 2.2.2.2
  priority 100
  auto-cost reference-bandwidth 1000
- interface GigabitEthernet0/3
+ passive-interface GigabitEthernet0/3
  network 10.150.127.0 0.0.0.3 area 0
 
 ! NAT configuration
