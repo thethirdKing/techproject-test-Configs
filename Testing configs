@@ -1,18 +1,78 @@
-configure terminal
+hostname SpringCore1
+!
+router ospf 15
+ router-id 3.3.3.3
+ auto-cost reference-bandwidth 1000
+ no passive-interface GigabitEthernet1/1
+ no passive-interface GigabitEthernet1/2
+ no passive-interface GigabitEthernet1/3
+ network 10.150.0.0 0.0.0.255 area 0
+!
+interface GigabitEthernet1/1
+ no shutdown
+ ip address 10.150.127.21 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+!
 interface GigabitEthernet1/2
  no shutdown
- no ip address dhcp
- ip address 10.150.127.9 255.255.255.252
+ ip address 10.150.127.14 255.255.255.252
+ ip ospf network point-to-point
  ip ospf 15 area 0
- no passive-interface
-exit
+!
 interface GigabitEthernet1/3
  no shutdown
- no ip address dhcp
- ip address 10.150.127.17 255.255.255.252
+ ip address 10.150.127.6 255.255.255.252
+ ip ospf network point-to-point
  ip ospf 15 area 0
- no passive-interface
-exit
+!
+
+
+
+
+hostname SpringCore2
+!
 router ospf 15
- network 10.150.127.0 0.0.0.255 area 0
-end
+ router-id 4.4.4.4
+ auto-cost reference-bandwidth 1000
+ no passive-interface GigabitEthernet1/2
+ no passive-interface GigabitEthernet1/3
+ network 10.150.0.0 0.0.0.255 area 0
+!
+interface GigabitEthernet1/2
+ no shutdown
+ ip address 10.150.127.9 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+!
+interface GigabitEthernet1/3
+ no shutdown
+ ip address 10.150.127.17 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+!
+
+
+
+
+hostname SpringR2
+!
+router ospf 15
+ router-id 2.2.2.2
+ auto-cost reference-bandwidth 1000
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ network 10.150.0.0 0.0.0.255 area 0
+!
+interface GigabitEthernet0/1
+ no shutdown
+ ip address 10.150.127.13 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+!
+interface GigabitEthernet0/2
+ no shutdown
+ ip address 10.150.127.2 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+!
