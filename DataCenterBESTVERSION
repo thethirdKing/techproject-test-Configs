@@ -186,6 +186,17 @@ interface Port-channel2
 interface Vlan990
  no shutdown
 
+interface GigabitEthernet1/2
+ no shutdown
+interface GigabitEthernet2/0
+ no shutdown
+interface GigabitEthernet2/1
+ no shutdown
+interface GigabitEthernet2/2
+ no shutdown
+interface GigabitEthernet2/3
+ no shutdown
+
 ! Line configuration
 line con 0
  exec-timeout 0 0
