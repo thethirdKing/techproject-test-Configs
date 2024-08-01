@@ -83,6 +83,18 @@ router ospf 15
  network 192.168.255.0 0.0.0.255 area 0
  default-information originate
 
+configure terminal
+interface GigabitEthernet0/0
+ no shutdown
+ ip address 10.150.127.5 255.255.255.252
+ ip ospf 15 area 0
+ no passive-interface
+exit
+router ospf 15
+ network 10.150.127.0 0.0.0.255 area 0
+end
+
+
 ip forward-protocol nd
 no ip http server
 no ip http secure-server
