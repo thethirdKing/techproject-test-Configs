@@ -1,47 +1,18 @@
-!by Elias
-
-!
-version 15.2
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
-service compress-config
-!
 hostname SpringCore1
 !
-boot-start-marker
-boot-end-marker
-!
-!
-no logging console
 enable secret 5 $1$Ey4B$9ZamX9HhO6EAhlwKBYoOX1
-!
-no aaa new-model
-!
-!
-!
-!
 !
 vtp mode transparent
 !
-!
-!
-no ip domain-lookup
+ip domain-name shmc.local
 ip cef
 ipv6 unicast-routing
 ipv6 cef
-!
-!
-archive
- path tftp://10.150.0.16/SpringCore1
- write-memory
- time-period 10080
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 spanning-tree vlan 105,115,125,135,145,155,200,205,210,215,999 priority 24576
 spanning-tree vlan 305,310,315,320,325,720,990 priority 28672
-!
 !
 vlan 105
  name PharmaPlus
@@ -338,6 +309,8 @@ interface Vlan305
  ip helper-address 10.150.0.13
  standby version 2
  standby 305 ip 10.150.80.1
+ standby 305 priority 150
+ standby 305 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:305::1/64
@@ -349,6 +322,8 @@ interface Vlan310
  ip helper-address 10.150.0.13
  standby version 2
  standby 310 ip 10.150.84.1
+ standby 310 priority 150
+ standby 310 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:310::1/64
@@ -360,6 +335,8 @@ interface Vlan315
  ip helper-address 10.150.0.13
  standby version 2
  standby 315 ip 10.150.88.1
+ standby 315 priority 150
+ standby 315 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:315::1/64
@@ -371,6 +348,8 @@ interface Vlan320
  ip helper-address 10.150.0.13
  standby version 2
  standby 320 ip 10.150.92.1
+ standby 320 priority 150
+ standby 320 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:320::1/64
@@ -383,6 +362,8 @@ interface Vlan325
  ip helper-address 10.150.0.13
  standby version 2
  standby 325 ip 10.150.96.1
+ standby 325 priority 150
+ standby 325 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:325::1/64
@@ -394,6 +375,8 @@ interface Vlan720
  ip helper-address 10.150.0.13
  standby version 2
  standby 720 ip 10.150.120.1
+ standby 720 priority 150
+ standby 720 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:720::1/64
@@ -405,6 +388,8 @@ interface Vlan990
  ip helper-address 10.150.0.13
  standby version 2
  standby 990 ip 10.150.0.1
+ standby 990 priority 150
+ standby 990 preempt
  ip ospf network point-to-point
  ipv6 address FE80::3 link-local
  ipv6 address 2001:BBFC:88EF:990::1/64
@@ -413,6 +398,29 @@ interface Vlan990
 router ospf 15
  router-id 3.3.3.3
  auto-cost reference-bandwidth 1000
+ passive-interface GigabitEthernet0/0
+ passive-interface GigabitEthernet0/1
+ passive-interface GigabitEthernet0/2
+ passive-interface GigabitEthernet0/3
+ passive-interface GigabitEthernet1/0
+ passive-interface Vlan105
+ passive-interface Vlan115
+ passive-interface Vlan125
+ passive-interface Vlan135
+ passive-interface Vlan145
+ passive-interface Vlan155
+ passive-interface Vlan200
+ passive-interface Vlan205
+ passive-interface Vlan210
+ passive-interface Vlan215
+ passive-interface Vlan220
+ passive-interface Vlan305
+ passive-interface Vlan310
+ passive-interface Vlan315
+ passive-interface Vlan320
+ passive-interface Vlan325
+ passive-interface Vlan720
+ passive-interface Vlan990
  network 10.150.0.0 0.0.0.255 area 0
  network 10.150.127.0 0.0.0.255 area 0
 !
@@ -431,11 +439,6 @@ logging trap debugging
 logging origin-id hostname
 logging source-interface Vlan720
 logging host 10.150.0.16
-ipv6 router ospf 15
-!
-!
-!
-!
 !
 control-plane
 !
@@ -467,11 +470,58 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
 !
+configure terminal
+interface GigabitEthernet1/1
+ no shutdown
+interface GigabitEthernet1/2
+ no shutdown
+interface GigabitEthernet1/3
+ no shutdown
+interface Vlan105
+ no shutdown
+interface Vlan115
+ no shutdown
+interface Vlan125
+ no shutdown
+interface Vlan135
+ no shutdown
+interface Vlan145
+ no shutdown
+interface Vlan155
+ no shutdown
+interface Vlan200
+ no shutdown
+interface Vlan205
+ no shutdown
+interface Vlan210
+ no shutdown
+interface Vlan215
+ no shutdown
+interface Vlan220
+ no shutdown
+interface Vlan305
+ no shutdown
+interface Vlan310
+ no shutdown
+interface Vlan315
+ no shutdown
+interface Vlan320
+ no shutdown
+interface Vlan325
+ no shutdown
+interface Vlan720
+ no shutdown
+interface Vlan990
+ no shutdown
+interface Vlan999
+ no shutdown
+
 line con 0
  exec-timeout 0 0
  password cisco
  logging synchronous
  login
+!
 line aux 0
 line vty 0 4
  password cisco
