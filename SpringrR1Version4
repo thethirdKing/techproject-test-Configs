@@ -1,71 +1,24 @@
-!by Elias
-!INFO5152 Technical Projects - Phase 2 Task 3
-!SpringR1
-!
-! Last configuration change at 06:41:32 UTC Fri Jul 12 2024
-!
 version 15.9
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
-!
 hostname SpringR1
-!
-boot-start-marker
-boot-end-marker
-!
-!
 enable secret 9 $9$jfOHaTUBeeo807$JkHAIZHn8VrUOyqgk.uQONGS1ExbYUA.33HfXk0J5VE
-!
 no aaa new-model
-!
-!
-!
 mmi polling-interval 60
 no mmi auto-configure
 no mmi pvc
 mmi snmp-timeout 180
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
 no ip domain lookup
 ip cef
 ipv6 unicast-routing
 ipv6 cef
-!
 multilink bundle-name authenticated
-!
-!
-!
-!
 archive
  path tftp://10.150.0.16/SpringR1
  write-memory
  time-period 10080
-!
 redundancy
-!
-!
-! 
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
 interface GigabitEthernet0/0
  ip address 10.150.127.5 255.255.255.252
  ip nat inside
@@ -78,7 +31,8 @@ interface GigabitEthernet0/0
  ipv6 address FE80::1 link-local
  ipv6 address 2001:BBFC:88EF:FFFD::1/64
  ipv6 ospf 15 area 0
-!
+ ip helper-address 10.150.0.12
+ ip helper-address 10.150.0.13
 interface GigabitEthernet0/1
  ip address 10.150.127.9 255.255.255.252
  ip nat inside
@@ -91,7 +45,8 @@ interface GigabitEthernet0/1
  ipv6 address FE80::1 link-local
  ipv6 address 2001:BBFC:88EF:FFFE::1/64
  ipv6 ospf 15 area 0
-!
+ ip helper-address 10.150.0.12
+ ip helper-address 10.150.0.13
 interface GigabitEthernet0/2
  description line to SpringR2
  ip address 10.150.127.1 255.255.255.252
@@ -105,7 +60,8 @@ interface GigabitEthernet0/2
  ipv6 address FE80::1 link-local
  ipv6 address 2001:BBFC:88EF:FFFF::1/64
  ipv6 ospf 15 area 0
-!
+ ip helper-address 10.150.0.12
+ ip helper-address 10.150.0.13
 interface GigabitEthernet0/3
  ip address dhcp
  ip nat outside
@@ -113,13 +69,12 @@ interface GigabitEthernet0/3
  duplex auto
  speed auto
  media-type rj45
-!
+ ip ospf 15 area 0
+ no shutdown
 router ospfv3 15
  router-id 1.1.1.1
- !
  address-family ipv6 unicast
  exit-address-family
-!
 router ospf 15
  router-id 1.1.1.1
  priority 127
@@ -130,27 +85,20 @@ router ospf 15
  network 10.150.127.0 0.0.0.255 area 0
 !
 ip forward-protocol nd
-!
-!
 no ip http server
 no ip http secure-server
 ip nat pool ACCESS 192.168.255.63 192.168.255.63 netmask 255.255.255.0
 ip nat inside source list 1 interface GigabitEthernet0/3 overload
 ip route 0.0.0.0 0.0.0.0 192.168.255.1
-!
 logging trap debugging
 logging origin-id hostname
 logging source-interface GigabitEthernet0/2
 logging host 10.150.0.16
 ipv6 ioam timestamp
-!
-!
 access-list 1 permit 10.150.0.0 0.0.0.255
-access-list 1 deny   any
-!
+access-list 1 deny any
 control-plane
-!
-banner exec 
+banner exec ^C
 **************************************************************************
 * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
 * education. IOSv is provided as-is and is not supported by Cisco's      *
@@ -158,8 +106,8 @@ banner exec 
 * of the IOSv Software or Documentation to any third party for any       *
 * purposes is expressly prohibited except as otherwise authorized by     *
 * Cisco in writing.                                                      *
-**************************************************************************
-banner incoming 
+**************************************************************************^C
+banner incoming ^C
 **************************************************************************
 * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
 * education. IOSv is provided as-is and is not supported by Cisco's      *
@@ -167,8 +115,8 @@ banner incoming 
 * of the IOSv Software or Documentation to any third party for any       *
 * purposes is expressly prohibited except as otherwise authorized by     *
 * Cisco in writing.                                                      *
-**************************************************************************
-banner login 
+**************************************************************************^C
+banner login ^C
 **************************************************************************
 * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
 * education. IOSv is provided as-is and is not supported by Cisco's      *
@@ -176,8 +124,15 @@ banner login 
 * of the IOSv Software or Documentation to any third party for any       *
 * purposes is expressly prohibited except as otherwise authorized by     *
 * Cisco in writing.                                                      *
-**************************************************************************
-!
+**************************************************************************^C
+interface GigabitEthernet0/0
+ no shutdown
+interface GigabitEthernet0/1
+ no shutdown
+interface GigabitEthernet0/2
+ no shutdown
+interface GigabitEthernet0/3
+ no shutdown
 line con 0
  exec-timeout 0 0
  password cisco
@@ -192,7 +147,5 @@ line vty 5 15
  password cisco
  login
  transport input telnet
-!
 no scheduler allocate
-!
 end
