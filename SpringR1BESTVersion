@@ -99,7 +99,7 @@ logging source-interface GigabitEthernet0/2
 logging host 10.150.0.16
 
 ! Access list for NAT
-access-list 1 permit 10.150.0.0 0.0.0.255
+access-list 1 permit 10.150.0.0 0.0.0.3
 access-list 1 deny any
 
 ! Disable HTTP server
