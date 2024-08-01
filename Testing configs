@@ -13,3 +13,35 @@ show interfaces trunk
 show ip interface brief
 show ip dhcp binding
 ping 10.150.0.12
+
+springR1
+interface GigabitEthernet0/0
+ ip address 10.150.127.5 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+
+interface GigabitEthernet0/1
+ ip address 10.150.127.9 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+
+interface GigabitEthernet0/2
+ ip address 10.150.127.1 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+
+SpringR2
+interface GigabitEthernet0/0
+ ip address 10.150.127.17 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+
+interface GigabitEthernet0/1
+ ip address 10.150.127.13 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
+
+interface GigabitEthernet0/2
+ ip address 10.150.127.2 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf 15 area 0
