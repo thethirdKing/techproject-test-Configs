@@ -409,7 +409,7 @@ router ospf 15
  passive-interface Vlan990
  passive-interface Vlan999
  network 10.150.0.0 0.0.0.255 area 0
-configure terminal
+
 interface GigabitEthernet1/1
  no shutdown
  no passive-interface
@@ -422,8 +422,6 @@ interface GigabitEthernet1/3
 exit
 router ospf 15
  network 10.150.127.0 0.0.0.255 area 0
-end
-
 
 !
 ip forward-protocol nd
@@ -517,7 +515,7 @@ interface Vlan990
  no shutdown
 interface Vlan999
  no shutdown
-end
+
 line con 0
  exec-timeout 0 0
  password cisco
