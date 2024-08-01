@@ -11,8 +11,8 @@ ipv6 cef
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
-spanning-tree vlan 105,115,125,135,145,155,200,205,210,215,999 priority 24576
-spanning-tree vlan 305,310,315,320,325,720,990 priority 28672
+spanning-tree vlan 105,115,125,135,145,155,200,205,210,215,999 priority 28672
+spanning-tree vlan 305,310,315,320,325,720,990 priority 24576
 !
 vlan 105
  name PharmaPlus
@@ -292,6 +292,7 @@ interface Vlan215
 !
 interface Vlan220
  ip address 10.150.60.2 255.255.255.0
+ ip access-group Visit270-IN in
  ip helper-address 10.150.0.12
  ip helper-address 10.150.0.13
  standby version 2
@@ -398,29 +399,6 @@ interface Vlan990
 router ospf 15
  router-id 3.3.3.3
  auto-cost reference-bandwidth 1000
- passive-interface GigabitEthernet0/0
- passive-interface GigabitEthernet0/1
- passive-interface GigabitEthernet0/2
- passive-interface GigabitEthernet0/3
- passive-interface GigabitEthernet1/0
- passive-interface Vlan105
- passive-interface Vlan115
- passive-interface Vlan125
- passive-interface Vlan135
- passive-interface Vlan145
- passive-interface Vlan155
- passive-interface Vlan200
- passive-interface Vlan205
- passive-interface Vlan210
- passive-interface Vlan215
- passive-interface Vlan220
- passive-interface Vlan305
- passive-interface Vlan310
- passive-interface Vlan315
- passive-interface Vlan320
- passive-interface Vlan325
- passive-interface Vlan720
- passive-interface Vlan990
  network 10.150.0.0 0.0.0.255 area 0
  network 10.150.127.0 0.0.0.255 area 0
 !
@@ -429,8 +407,8 @@ ip forward-protocol nd
 ip http server
 ip http secure-server
 !
-ip route 0.0.0.0 0.0.0.0 10.150.127.1 5
-ip route 0.0.0.0 0.0.0.0 10.150.127.2 10
+ip route 0.0.0.0 0.0.0.0 10.150.127.2 5
+ip route 0.0.0.0 0.0.0.0 10.150.127.1 10
 !
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
