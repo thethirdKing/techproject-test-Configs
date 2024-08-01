@@ -81,7 +81,7 @@ router ospf 15
  priority 100
  auto-cost reference-bandwidth 1000
  passive-interface GigabitEthernet0/3
- network 192.168.255.0 0.0.0.3 area 0
+ network 10.150.127.0 0.0.0.3 area 0
 
 ! NAT configuration
 ip nat pool ACCESS 192.168.255.63 192.168.255.63 netmask 255.255.255.0
