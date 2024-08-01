@@ -80,7 +80,6 @@ interface GigabitEthernet0/0
 exit
 router ospf 15
  network 10.150.127.0 0.0.0.255 area 0
-end
 
  auto-cost reference-bandwidth 1000
  passive-interface GigabitEthernet0/3
