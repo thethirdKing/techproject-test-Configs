@@ -15,12 +15,6 @@ ipv6 unicast-routing
 ipv6 cef
 multilink bundle-name authenticated
 
-! Archive configuration
-archive
- path tftp://10.150.0.16/SpringR2
- write-memory
- time-period 10080
-
 redundancy
 
 ! Interface configurations
