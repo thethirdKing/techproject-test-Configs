@@ -1,169 +1,102 @@
-SpringCore2(config)#router ospf 15
-SpringCore2(config-router)#no passive-interface GigabitEthernet1/2
-SpringCore2(config-router)#no passive-interface GigabitEthernet1/3
-SpringCore2(config-router)#end
-SpringCore2#
-*Jul 31 23:07:13.897: %SYS-5-CONFIG_I: Configured from console by console
-SpringCore2#show run | section ospf
- ip ospf network point-to-point
- ip ospf 15 area 0
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ip ospf 15 area 0
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ip ospf 15 area 0
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
-router ospf 15
- router-id 4.4.4.4
- auto-cost reference-bandwidth 1000
- passive-interface GigabitEthernet0/0
- passive-interface GigabitEthernet0/1
- passive-interface GigabitEthernet0/2
- passive-interface GigabitEthernet0/3
- passive-interface GigabitEthernet1/0
- passive-interface Vlan105
- passive-interface Vlan115
- passive-interface Vlan125
- passive-interface Vlan135
- passive-interface Vlan145
- passive-interface Vlan155
- passive-interface Vlan200
- passive-interface Vlan205
- passive-interface Vlan215
- passive-interface Vlan220
- passive-interface Vlan305
- passive-interface Vlan310
- passive-interface Vlan315
- passive-interface Vlan320
- passive-interface Vlan325
- passive-interface Vlan720
- passive-interface Vlan990
- passive-interface Vlan999
- network 10.150.0.0 0.0.0.255 area 0
-ipv6 router ospf 15
+SpringR1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         10.150.127.5    YES manual up                    up      
+GigabitEthernet0/1         10.150.127.9    YES manual up                    up      
+GigabitEthernet0/2         10.150.127.1    YES manual up                    up      
+GigabitEthernet0/3         unassigned      YES DHCP   up                    up      
+NVI0                       unassigned      YES unset  up                    up      
+SpringR1#show ip ospf interface br
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Gi0/1        15    0               10.150.127.9/30    1     P2P   1/1
+Gi0/2        15    0               10.150.127.1/30    1     DR    1/1
+Gi0/0        15    0               10.150.127.5/30    1     P2P   0/0
+SpringR1#show ip ospf neighbor detail
+ Neighbor 10.150.127.22, interface address 10.150.127.10
+    In the area 0 via interface GigabitEthernet0/1
+    Neighbor priority is 0, State is FULL, 6 state changes
+    DR is 0.0.0.0 BDR is 0.0.0.0
+    Options is 0x12 in Hello (E-bit, L-bit)
+    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
+    LLS Options is 0x1 (LR)
+    Dead timer due in 00:00:33
+    Neighbor is up for 00:06:20
+    Index 1/1/1, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec
+ Neighbor 2.2.2.2, interface address 10.150.127.2
+    In the area 0 via interface GigabitEthernet0/2
+    Neighbor priority is 1, State is FULL, 24 state changes
+    DR is 0.0.0.0 BDR is 0.0.0.0
+    Options is 0x12 in Hello (E-bit, L-bit)
+    Options is 0x52 in DBD (E-bit, L-bit, O-bit)
+    LLS Options is 0x1 (LR)
+    Dead timer due in 00:00:36
+    Neighbor is up for 01:05:58
+    Index 1/2/2, retransmission queue length 0, number of retransmission 1
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 2, maximum is 2
+    Last retransmission scan time is 0 msec, maximum is 0 msec
+SpringR1#show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override, p - overrides from PfR
+
+Gateway of last resort is 192.168.255.1 to network 0.0.0.0
+
+      10.0.0.0/8 is variably subnetted, 10 subnets, 3 masks
+O        10.150.0.0/24 [110/2] via 10.150.127.10, 00:05:42, GigabitEthernet0/1
+O        10.150.127.12/30 
+           [110/3] via 10.150.127.10, 00:06:16, GigabitEthernet0/1
+O        10.150.127.16/30 
+           [110/2] via 10.150.127.10, 00:06:26, GigabitEthernet0/1
+O        10.150.127.20/30 
+           [110/2] via 10.150.127.10, 00:06:26, GigabitEthernet0/1
+O     192.168.255.0/24 [110/3] via 10.150.127.10, 00:06:16, GigabitEthernet0/1
+SpringR1#show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "application"
+  Sending updates every 0 seconds
+  Invalid after 0 seconds, hold down 0, flushed after 0
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Maximum path: 32
+  Routing for Networks:
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 4)
+
+Routing Protocol is "ospf 15"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 1.1.1.1
+  It is an autonomous system boundary router
+ Redistributing External Routes from,
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.150.127.0 0.0.0.255 area 0
+    192.168.255.0 0.0.0.255 area 0
+  Routing on Interfaces Configured Explicitly (Area 0):
+    GigabitEthernet0/1
+    GigabitEthernet0/2
+    GigabitEthernet0/0
+  Passive Interface(s):
+    GigabitEthernet0/3
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    4.4.4.4              110      00:59:14
+    2.2.2.2              110      00:06:25
+    10.150.127.22        110      00:05:52
+  Distance: (default is 110)
 
 
 
-SpringCore1(config)#router ospf 15
-SpringCore1(config-router)#no passive-interface GigabitEthernet1/1
-SpringCore1(config-router)#no passive-interface GigabitEthernet1/2
-SpringCore1(config-router)#no passive-interface GigabitEthernet1/3
-SpringCore1(config-router)#end
-SpringCore1#
-*Aug  1 00:08:46.216: %SYS-5-CONFIG_I: Configured from console by console
-SpringCore1#show run | section ospf
- ip ospf network point-to-point
- ip ospf 15 area 0
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ip ospf 15 area 0
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ip ospf 15 area 0
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
- ip ospf network point-to-point
- ipv6 ospf 15 area 0
-router ospf 15
- router-id 3.3.3.3
- auto-cost reference-bandwidth 1000
- passive-interface GigabitEthernet0/0
- passive-interface GigabitEthernet0/1
- passive-interface GigabitEthernet0/2
- passive-interface GigabitEthernet0/3
- passive-interface GigabitEthernet1/0
- passive-interface Vlan105
- passive-interface Vlan115
- passive-interface Vlan125
- passive-interface Vlan135
- passive-interface Vlan145
- passive-interface Vlan155
- passive-interface Vlan200
- passive-interface Vlan205
- passive-interface Vlan215
- passive-interface Vlan220
- passive-interface Vlan305
- passive-interface Vlan310
- passive-interface Vlan315
- passive-interface Vlan320
- passive-interface Vlan325
- passive-interface Vlan720
- passive-interface Vlan990
- passive-interface Vlan999
- network 10.150.0.0 0.0.0.255 area 0
-ipv6 router ospf 15
-SpringCore1#
+
