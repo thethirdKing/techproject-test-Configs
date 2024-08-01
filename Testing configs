@@ -76,3 +76,6 @@ interface GigabitEthernet0/2
  ip ospf network point-to-point
  ip ospf 15 area 0
 !
+
+
+clear ip ospf process
