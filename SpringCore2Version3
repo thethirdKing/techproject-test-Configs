@@ -1,26 +1,19 @@
-
-version 15.9
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
 hostname SpringCore2
+!
 enable secret 5 $1$O8IP$NSsvuDQlbmBT9dfcml75c.
-no aaa new-model
-mmi polling-interval 60
-no mmi auto-configure
-no mmi pvc
-mmi snmp-timeout 180
-no ip domain lookup
+!
+vtp mode transparent
+!
+ip domain-name shmc.local
 ip cef
 ipv6 unicast-routing
 ipv6 cef
-multilink bundle-name authenticated
-archive
- path tftp://10.150.0.16/SpringCore2
- write-memory
- time-period 10080
-redundancy
-
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 105,115,125,135,145,155,200,205,210,215,999 priority 28672
+spanning-tree vlan 305,310,315,320,325,720,990 priority 24576
+!
 vlan 105
  name PharmaPlus
 !
@@ -81,14 +74,12 @@ vlan 999
 vlan 888
  name Closed
 !
-
 interface Port-channel2
  switchport trunk allowed vlan 720,990,999
  switchport trunk encapsulation dot1q
  switchport trunk native vlan 999
  switchport mode trunk
 !
-
 interface GigabitEthernet0/0
  switchport trunk allowed vlan 105,115,125,135,145,155,720,999
  switchport trunk encapsulation dot1q
@@ -96,7 +87,6 @@ interface GigabitEthernet0/0
  switchport mode trunk
  negotiation auto
 !
-
 interface GigabitEthernet0/1
  switchport trunk allowed vlan 200,205,210,215,220,720,999
  switchport trunk encapsulation dot1q
@@ -104,7 +94,6 @@ interface GigabitEthernet0/1
  switchport mode trunk
  negotiation auto
 !
-
 interface GigabitEthernet0/2
  switchport trunk allowed vlan 305,310,315,320,325,720,999
  switchport trunk encapsulation dot1q
@@ -112,7 +101,6 @@ interface GigabitEthernet0/2
  switchport mode trunk
  negotiation auto
 !
-
 interface GigabitEthernet0/3
  switchport trunk allowed vlan 720,990,999
  switchport trunk encapsulation dot1q
@@ -120,7 +108,6 @@ interface GigabitEthernet0/3
  switchport mode trunk
  negotiation auto
 !
-
 interface GigabitEthernet1/0
  switchport trunk allowed vlan 720,990,999
  switchport trunk encapsulation dot1q
@@ -129,7 +116,6 @@ interface GigabitEthernet1/0
  negotiation auto
  channel-group 2 mode desirable
 !
-
 interface GigabitEthernet1/1
  no switchport
  ip address 10.150.127.22 255.255.255.252
@@ -139,9 +125,7 @@ interface GigabitEthernet1/1
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:FFFC::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface GigabitEthernet1/2
  no switchport
  ip address 10.150.127.10 255.255.255.252
@@ -151,9 +135,7 @@ interface GigabitEthernet1/2
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:FFFE::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface GigabitEthernet1/3
  no switchport
  ip address 10.150.127.18 255.255.255.252
@@ -163,9 +145,7 @@ interface GigabitEthernet1/3
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:FFFA::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan999
  ip address 10.150.99.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -176,9 +156,7 @@ interface Vlan999
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:999::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan105
  ip address 10.150.8.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -189,9 +167,7 @@ interface Vlan105
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:105::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan115
  ip address 10.150.12.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -202,9 +178,7 @@ interface Vlan115
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:115::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan125
  ip address 10.150.16.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -215,9 +189,7 @@ interface Vlan125
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:125::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan135
  ip address 10.150.20.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -228,9 +200,7 @@ interface Vlan135
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:135::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan145
  ip address 10.150.24.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -241,9 +211,7 @@ interface Vlan145
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:145::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan155
  ip address 10.150.28.3 255.255.255.0
  ip access-group Visit190-IN in
@@ -255,9 +223,7 @@ interface Vlan155
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:155::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan200
  ip address 10.150.44.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -268,9 +234,7 @@ interface Vlan200
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:200::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan205
  ip address 10.150.48.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -281,9 +245,7 @@ interface Vlan205
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:205::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan210
  ip address 10.150.52.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -294,9 +256,7 @@ interface Vlan210
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:210::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan215
  ip address 10.150.56.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -307,9 +267,7 @@ interface Vlan215
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:215::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan220
  ip address 10.150.60.3 255.255.255.0
  ip access-group Visit270-IN in
@@ -321,9 +279,7 @@ interface Vlan220
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:220::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan305
  ip address 10.150.80.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -336,9 +292,7 @@ interface Vlan305
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:305::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan310
  ip address 10.150.84.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -351,9 +305,7 @@ interface Vlan310
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:310::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan315
  ip address 10.150.88.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -366,9 +318,7 @@ interface Vlan315
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:315::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan320
  ip address 10.150.92.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -381,9 +331,7 @@ interface Vlan320
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:320::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan325
  ip address 10.150.96.3 255.255.255.0
  ip access-group Visit360-IN in
@@ -397,9 +345,7 @@ interface Vlan325
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:325::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan720
  ip address 10.150.120.3 255.255.255.0
  ip helper-address 10.150.0.12
@@ -412,9 +358,7 @@ interface Vlan720
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:720::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 interface Vlan990
  ip address 10.150.0.43 255.255.255.0
  ip helper-address 10.150.0.12
@@ -427,39 +371,31 @@ interface Vlan990
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:990::2/64
  ipv6 ospf 15 area 0
- no shutdown
 !
-
 router ospf 15
  router-id 4.4.4.4
  auto-cost reference-bandwidth 1000
  network 10.150.0.0 0.0.0.255 area 0
+ network 10.150.127.0 0.0.0.255 area 0
 !
-
 ip forward-protocol nd
 !
-
 ip http server
 ip http secure-server
 !
-
 ip route 0.0.0.0 0.0.0.0 10.150.127.2 5
 ip route 0.0.0.0 0.0.0.0 10.150.127.1 10
 !
-
 ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
 !
-
 logging trap debugging
 logging origin-id hostname
 logging source-interface Vlan720
 logging host 10.150.0.16
 !
-
 control-plane
 !
-
 banner exec ^C
 IOSv - Cisco Systems Confidential -
 
@@ -469,7 +405,6 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
-
 banner incoming ^C
 IOSv - Cisco Systems Confidential -
 
@@ -479,7 +414,6 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
-
 banner login ^C
 IOSv - Cisco Systems Confidential -
 
@@ -489,6 +423,7 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
+!
 configure terminal
 interface GigabitEthernet1/1
  no shutdown
@@ -534,24 +469,21 @@ interface Vlan990
  no shutdown
 interface Vlan999
  no shutdown
+
 line con 0
  exec-timeout 0 0
  password cisco
  logging synchronous
  login
 !
-
 line aux 0
-
 line vty 0 4
  password cisco
  login
  transport input telnet
-
 line vty 5 15
  password cisco
  login
  transport input telnet
 !
-
 end
