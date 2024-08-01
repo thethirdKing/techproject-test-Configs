@@ -1,45 +1,18 @@
-!By Elias
-!
-version 15.2
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
-service compress-config
-!
 hostname SpringCore2
-!
-boot-start-marker
-boot-end-marker
-!
 !
 enable secret 5 $1$O8IP$NSsvuDQlbmBT9dfcml75c.
 !
-no aaa new-model
-!
-!
-!
-!
-!
 vtp mode transparent
 !
-!
-!
-no ip domain-lookup
+ip domain-name shmc.local
 ip cef
 ipv6 unicast-routing
 ipv6 cef
-!
-!
-archive
- path tftp://10.150.0.16/SpringCore2
- write-memory
- time-period 10080
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
 spanning-tree vlan 105,115,125,135,145,155,200,205,210,215,999 priority 28672
 spanning-tree vlan 305,310,315,320,325,720,990 priority 24576
-!
 !
 vlan 105
  name PharmaPlus
@@ -179,8 +152,6 @@ interface Vlan999
  ip helper-address 10.150.0.13
  standby version 2
  standby 999 ip 10.150.99.1
- standby 999 priority 150
- standby 999 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:999::2/64
@@ -192,8 +163,6 @@ interface Vlan105
  ip helper-address 10.150.0.13
  standby version 2
  standby 105 ip 10.150.8.1
- standby 105 priority 150
- standby 105 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:105::2/64
@@ -205,8 +174,6 @@ interface Vlan115
  ip helper-address 10.150.0.13
  standby version 2
  standby 115 ip 10.150.12.1
- standby 115 priority 150
- standby 115 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:115::2/64
@@ -218,8 +185,6 @@ interface Vlan125
  ip helper-address 10.150.0.13
  standby version 2
  standby 125 ip 10.150.16.1
- standby 125 priority 150
- standby 125 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:125::2/64
@@ -231,8 +196,6 @@ interface Vlan135
  ip helper-address 10.150.0.13
  standby version 2
  standby 135 ip 10.150.20.1
- standby 135 priority 150
- standby 135 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:135::2/64
@@ -244,8 +207,6 @@ interface Vlan145
  ip helper-address 10.150.0.13
  standby version 2
  standby 145 ip 10.150.24.1
- standby 145 priority 150
- standby 145 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:145::2/64
@@ -258,8 +219,6 @@ interface Vlan155
  ip helper-address 10.150.0.13
  standby version 2
  standby 155 ip 10.150.28.1
- standby 155 priority 150
- standby 155 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:155::2/64
@@ -271,8 +230,6 @@ interface Vlan200
  ip helper-address 10.150.0.13
  standby version 2
  standby 200 ip 10.150.44.1
- standby 200 priority 150
- standby 200 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:200::2/64
@@ -284,8 +241,6 @@ interface Vlan205
  ip helper-address 10.150.0.13
  standby version 2
  standby 205 ip 10.150.48.1
- standby 205 priority 150
- standby 205 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:205::2/64
@@ -297,8 +252,6 @@ interface Vlan210
  ip helper-address 10.150.0.13
  standby version 2
  standby 210 ip 10.150.52.1
- standby 210 priority 150
- standby 210 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:210::2/64
@@ -310,8 +263,6 @@ interface Vlan215
  ip helper-address 10.150.0.13
  standby version 2
  standby 215 ip 10.150.56.1
- standby 215 priority 150
- standby 215 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:215::2/64
@@ -324,8 +275,6 @@ interface Vlan220
  ip helper-address 10.150.0.13
  standby version 2
  standby 220 ip 10.150.60.1
- standby 220 priority 150
- standby 220 preempt
  ip ospf network point-to-point
  ipv6 address FE80::4 link-local
  ipv6 address 2001:BBFC:88EF:220::2/64
@@ -426,7 +375,7 @@ interface Vlan990
 router ospf 15
  router-id 4.4.4.4
  auto-cost reference-bandwidth 1000
- network 10.150.0.0 0.0.0.255 area 0
+ !!network 10.150.0.0 0.0.0.255 area 0
  network 10.150.127.0 0.0.0.255 area 0
 !
 ip forward-protocol nd
@@ -475,11 +424,58 @@ This IOSv software is provided AS-IS without warranty of any kind. Under no circ
 By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
 ^C
 !
+configure terminal
+interface GigabitEthernet1/1
+ no shutdown
+interface GigabitEthernet1/2
+ no shutdown
+interface GigabitEthernet1/3
+ no shutdown
+interface Vlan105
+ no shutdown
+interface Vlan115
+ no shutdown
+interface Vlan125
+ no shutdown
+interface Vlan135
+ no shutdown
+interface Vlan145
+ no shutdown
+interface Vlan155
+ no shutdown
+interface Vlan200
+ no shutdown
+interface Vlan205
+ no shutdown
+interface Vlan210
+ no shutdown
+interface Vlan215
+ no shutdown
+interface Vlan220
+ no shutdown
+interface Vlan305
+ no shutdown
+interface Vlan310
+ no shutdown
+interface Vlan315
+ no shutdown
+interface Vlan320
+ no shutdown
+interface Vlan325
+ no shutdown
+interface Vlan720
+ no shutdown
+interface Vlan990
+ no shutdown
+interface Vlan999
+ no shutdown
+
 line con 0
  exec-timeout 0 0
  password cisco
  logging synchronous
  login
+!
 line aux 0
 line vty 0 4
  password cisco
