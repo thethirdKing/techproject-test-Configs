@@ -1,7 +1,6 @@
-interface GigabitEthernet0/1
- switchport trunk encapsulation dot1q
- switchport trunk native vlan 999
- switchport trunk allowed vlan 111,730,990
- switchport mode trunk
- negotiation auto
-!
+show interfaces trunk
+show etherchannel summary
+show etherchannel port-channel
+show interface Port-channel1
+show interface Port-channel2
+show interfaces status
