@@ -1,42 +1,18 @@
-conf t
+configure terminal
+interface GigabitEthernet1/2
+ no shutdown
+ no ip address dhcp
+ ip address 10.150.127.9 255.255.255.252
+ ip ospf 15 area 0
+ no passive-interface
+exit
+interface GigabitEthernet1/3
+ no shutdown
+ no ip address dhcp
+ ip address 10.150.127.17 255.255.255.252
+ ip ospf 15 area 0
+ no passive-interface
+exit
 router ospf 15
-no passive-interface GigabitEthernet1/1
-no passive-interface GigabitEthernet1/2
-no passive-interface GigabitEthernet1/3
+ network 10.150.127.0 0.0.0.255 area 0
 end
-
-
-
-conf t
-router ospf 15
-no passive-interface GigabitEthernet1/2
-no passive-interface GigabitEthernet1/3
-end
-
-
-show run | section ospf
-
-
-conf t
-router ospf 15
-network 10.150.127.0 0.0.0.255 area 0
-network 10.150.127.4 0.0.0.3 area 0
-network 10.150.127.8 0.0.0.3 area 0
-network 10.150.127.12 0.0.0.3 area 0
-network 10.150.127.16 0.0.0.3 area 0
-end
-
-
-
-conf t
-router ospf 15
-network 10.150.127.0 0.0.0.3 area 0
-network 10.150.127.4 0.0.0.3 area 0
-network 10.150.127.8 0.0.0.3 area 0
-network 10.150.127.12 0.0.0.3 area 0
-network 10.150.127.16 0.0.0.3 area 0
-end
-
-
-clear ip ospf process
-show ip ospf neighbor
