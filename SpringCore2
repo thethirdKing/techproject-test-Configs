@@ -504,7 +504,7 @@ interface Vlan990
  no shutdown
 interface Vlan999
  no shutdown
-end
+
 line con 0
  exec-timeout 0 0
  password cisco
