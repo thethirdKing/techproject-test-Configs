@@ -85,6 +85,16 @@ end
  auto-cost reference-bandwidth 1000
  passive-interface GigabitEthernet0/3
  network 192.168.255.0 0.0.0.255 area 0
+
+configure terminal
+interface GigabitEthernet0/0
+ no shutdown
+ ip address 10.150.127.9 255.255.255.252
+ ip ospf 15 area 0
+ no passive-interface
+exit
+router ospf 15
+ network 10.150.127.0 0.0.0.255 area 0
 ip forward-protocol nd
 no ip http server
 no ip http secure-server
