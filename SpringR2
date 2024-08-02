@@ -2,23 +2,23 @@ version 15.9
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
+
 hostname SpringR2
 no logging console
 enable secret 9 $9$5d27mrgCU4fq6t$pRYDg7Z72yQMfETmlexGG25JiiuNPv5a5F8.0QZdDxs
+
 no aaa new-model
 mmi polling-interval 60
 no mmi auto-configure
 no mmi pvc
 mmi snmp-timeout 180
 no ip domain lookup
+
 ip cef
 ipv6 unicast-routing
 ipv6 cef
 multilink bundle-name authenticated
-archive
- path tftp://10.150.0.16/SpringR2
- write-memory
- time-period 10080
+
 redundancy
 interface GigabitEthernet0/0
  ip address 10.150.127.17 255.255.255.252
@@ -32,6 +32,7 @@ interface GigabitEthernet0/0
  ipv6 address FE80::2 link-local
  ipv6 address 2001:BBFC:88EF:FFFA::1/64
  ipv6 ospf 15 area 0
+
 interface GigabitEthernet0/1
  ip address 10.150.127.13 255.255.255.252
  ip nat inside
@@ -44,6 +45,7 @@ interface GigabitEthernet0/1
  ipv6 address FE80::2 link-local
  ipv6 address 2001:BBFC:88EF:FFFB::2/64
  ipv6 ospf 15 area 0
+
 interface GigabitEthernet0/2
  ip address 10.150.127.2 255.255.255.252
  ip nat inside
@@ -55,6 +57,7 @@ interface GigabitEthernet0/2
  ipv6 address FE80::2 link-local
  ipv6 address 2001:BBFC:88EF:FFFF::2/64
  ipv6 ospf 15 area 0
+
 interface GigabitEthernet0/3
  ip address dhcp
  ip nat outside
@@ -63,6 +66,7 @@ interface GigabitEthernet0/3
  duplex auto
  speed auto
  media-type rj45
+
 router ospfv3 15
  router-id 2.2.2.2
  address-family ipv6 unicast
